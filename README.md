@@ -18,4 +18,5 @@ Usage instructions are outlined by the tool controller using the `-help` command
 Hi there! My name is Jared Lyon and I'm currently a student at Northeastern University's Khoury College of Computer Sciences; currently, I am pursuing a combined BS in Computer Science & Biology with a minor in Law & Public Policy. My hobbies include freelance JavaScript development, film production assistant set work, and more.
 
 Feel free to reach me at jaredalyon@gmail.com or [connect with me on LinkedIn](https://www.linkedin.com/in/jaredalyon/)!
+
 You can find my resume [here](https://docs.google.com/document/d/1B09KzLU4TOHG47-ZUVnEg0qCEoYnKj4COjAXmedcXQs/edit?usp=sharing).
