@@ -9,6 +9,8 @@
 #include "../include/commands/Decrypt.h"
 
 #include <iostream>
+#include <sodium/crypto_secretbox.h>
+#include <sodium/randombytes.h>
 
 Controller::Controller() {
     this->data = "";
@@ -46,8 +48,20 @@ void Controller::execute(std::string input) {
         this->data = decompressed;
         cout << "Decompressed the loaded data!" << endl;
     } else if (input == "-encrypt") {
-        cout << "Enter a key for encryption, be sure to save it for later decryption use:" << endl;
-        cin >> this->key;
+        std::string key(crypto_secretbox_KEYBYTES, 0);
+        randombytes_buf(reinterpret_cast<unsigned char*>(&key[0]), crypto_secretbox_KEYBYTES);
+        this->key = key;
+        cout << "Your key is:" << endl;
+        cout << key << endl;
+
+        FileWrapper keySave;
+        string filepath = "";
+        cout << "Enter filepath to save key:" << endl;
+        cin >> filepath;
+        keySave.write(filepath, key);
+        cout << "Key saved to " + filepath << endl;
+
+        cout << "Please save this key for later decryption." << endl;
         Encrypt encrypt(this->data, this->key);
         this->data = encrypt.encryptData();
     } else if (input == "-decrypt") {

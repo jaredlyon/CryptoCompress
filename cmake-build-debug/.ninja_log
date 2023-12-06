@@ -34,3 +34,7 @@
 9	481	1701848313703423723	CMakeFiles/CryptoCompress.dir/lib/src/commands/Decrypt.cpp.o	1cc504df0fcafdb3
 10	483	1701848313706696558	CMakeFiles/CryptoCompress.dir/lib/src/Controller.cpp.o	97a1c5743efea774
 483	518	1701848313741944039	CryptoCompress	fb459cb97ac66377
+15	549	1701852154899081637	CMakeFiles/CryptoCompress.dir/main.cpp.o	3a41150e83ffaba1
+16	549	1701852154899081429	CMakeFiles/CryptoCompress.dir/lib/src/commands/Encrypt.cpp.o	a21b082ed8da7109
+16	551	1701852154902046928	CMakeFiles/CryptoCompress.dir/lib/src/Controller.cpp.o	97a1c5743efea774
+551	702	1701852155052590602	CryptoCompress	fb459cb97ac66377

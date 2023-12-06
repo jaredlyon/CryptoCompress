@@ -4,23 +4,6 @@
 
 using std::cout, std::cin, std::endl, std::string;
 int main() {
-//    if (hydro_init() != 0) {
-//        abort();
-//    }
-//
-//    std::string origin = "hello world!";
-//    std::string compressed = brotli::compress(origin);
-//    std::string decompressed = brotli::decompress(compressed);
-//    std::cout << std::boolalpha << (origin == decompressed);
-
-//    uint8_t k[hydro_hash_KEYBYTES];
-//    uint8_t h1[hydro_hash_BYTES], h2[hydro_hash_BYTES];
-//
-//    hydro_hash_keygen(k);
-//    hydro_hash_hash(h1, "test", 4, "context1", k);
-//    hydro_hash_hash(h2, "test", 4, "context2", k);
-///* h1 != h2 even if the key and input are the same */
-
     cout << "   ___                            ___                                        \n"
             "  / (_)                          / (_)                                       \n"
             " |      ,_           _ _|_  __  |      __   _  _  _     _   ,_    _   ,   ,  \n"
