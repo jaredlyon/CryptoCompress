@@ -3,16 +3,24 @@
 //
 
 #include <sodium/crypto_secretbox.h>
-#include <sodium/randombytes.h>
 #include "../../include/commands/Decrypt.h"
 #include <iostream>
 #include <sodium/core.h>
 
+/**
+ * Initializes the decryption command object.
+ * @param data the string data to decrypt
+ * @param key the encryption key
+ */
 Decrypt::Decrypt(std::string data, std::string key) {
     this->data = data;
     this->key = key;
 }
 
+/**
+ * Decrypts the data in this object.
+ * @return the decrypted string
+ */
 std::string Decrypt::decryptData() {
     if (sodium_init() < 0) {
         std::cerr << "Error initializing libsodium!" << std::endl;

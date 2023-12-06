@@ -1,7 +1,9 @@
-#include "lib/brotli/brotli_wrapper.h"
 #include "lib/include/Controller.h"
 #include <iostream>
 
+/**
+ * Runs CryptoCompress.
+ */
 using std::cout, std::cin, std::endl, std::string;
 int main() {
     cout << "   ___                            ___                                        \n"
@@ -12,8 +14,9 @@ int main() {
             "                /|/|                                 /|                      \n"
             "                \\|\\|                                 \\|                      " << endl;
     cout << "Welcome to CryptoCompress v1.0.0\nUse '-help' for help." << endl;
-    cout << "CryptoCompress is a C++ program that uses Google's brotli architecture to compress files" << endl;
-    cout << "and libhydrogen to encrypt them." << endl;
+    cout << "CryptoCompress is a C++ program that uses" << endl;
+    cout << "Google's brotli architecture to compress files" << endl;
+    cout << "and libsodium to encrypt them." << endl;
 
     bool running = true;
     string input = "";

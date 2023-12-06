@@ -12,11 +12,17 @@
 #include <sodium/crypto_secretbox.h>
 #include <sodium/randombytes.h>
 
+/**
+ * Initializes the controller object for this tool.
+ */
 Controller::Controller() {
     this->data = "";
     this->key = "";
 }
 
+/**
+ * Executes CLI arguments received by main.cpp.
+ */
 using std::cout, std::cin, std::endl, std::string;
 void Controller::execute(std::string input) {
     if (input == "-load") {
@@ -79,7 +85,9 @@ void Controller::execute(std::string input) {
     }
 }
 
-// Function to generate a random key
+/**
+ * Generates a random key using libsodium's secretbox module.
+ */
 void Controller::genKey() {
     std::string key(crypto_secretbox_KEYBYTES, 0);
     randombytes_buf(reinterpret_cast<unsigned char*>(&key[0]), key.size());

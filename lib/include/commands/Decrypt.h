@@ -7,6 +7,9 @@
 
 #include <string>
 
+/**
+ * Represents the decryption command interface.
+ */
 class Decrypt {
 private:
     std::string data;

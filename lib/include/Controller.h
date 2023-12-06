@@ -7,15 +7,17 @@
 
 #include <string>
 
+/**
+ * Represents the controller interface.
+ */
 class Controller {
-public:
-    Controller();
-    void execute(std::string input);
 private:
     std::string data;
     std::string key;
     void genKey();
+public:
+    Controller();
+    void execute(std::string input);
 };
-
 
 #endif //CRYPTOCOMPRESS_CONTROLLER_H

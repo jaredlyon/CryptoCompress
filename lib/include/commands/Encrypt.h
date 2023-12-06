@@ -7,6 +7,9 @@
 
 #include <string>
 
+/**
+ * Represents the encryption command interface,
+ */
 class Encrypt {
 private:
     std::string data;
