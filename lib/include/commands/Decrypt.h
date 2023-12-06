@@ -12,7 +12,7 @@ private:
     std::string data;
     std::string key;
 public:
-    Decrypt(std::string& data, std::string& key);
+    Decrypt(std::string data, std::string key);
     std::string decryptData();
 };
 

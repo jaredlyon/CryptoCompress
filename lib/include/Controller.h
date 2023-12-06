@@ -14,6 +14,7 @@ public:
 private:
     std::string data;
     std::string key;
+    void genKey();
 };
 
 

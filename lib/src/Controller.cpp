@@ -48,11 +48,9 @@ void Controller::execute(std::string input) {
         this->data = decompressed;
         cout << "Decompressed the loaded data!" << endl;
     } else if (input == "-encrypt") {
-        std::string key(crypto_secretbox_KEYBYTES, 0);
-        randombytes_buf(reinterpret_cast<unsigned char*>(&key[0]), crypto_secretbox_KEYBYTES);
-        this->key = key;
+        this->genKey();
         cout << "Your key is:" << endl;
-        cout << key << endl;
+        cout << this->key << endl;
 
         FileWrapper keySave;
         string filepath = "";
@@ -79,4 +77,11 @@ void Controller::execute(std::string input) {
         Decrypt decrypt(this->data, this->key);
         this->data = decrypt.decryptData();
     }
+}
+
+// Function to generate a random key
+void Controller::genKey() {
+    std::string key(crypto_secretbox_KEYBYTES, 0);
+    randombytes_buf(reinterpret_cast<unsigned char*>(&key[0]), key.size());
+    this->key = key;
 }

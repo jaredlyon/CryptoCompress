@@ -8,32 +8,31 @@
 #include <iostream>
 #include <sodium/core.h>
 
-Decrypt::Decrypt(std::string& data, std::string& key) {
+Decrypt::Decrypt(std::string data, std::string key) {
     this->data = data;
     this->key = key;
 }
 
 std::string Decrypt::decryptData() {
     if (sodium_init() < 0) {
-        std::cerr << "libsodium encryption module failed to initialize" << std::endl;
+        std::cerr << "Error initializing libsodium!" << std::endl;
+        return "";
     }
 
-    if (this->key.length() != crypto_secretbox_KEYBYTES) {
-        std::cerr << "Invalid key length" << std::endl;
+    // Extract the nonce from the encrypted message
+    std::string nonce = this->data.substr(0, crypto_secretbox_NONCEBYTES);
+
+    // Decrypt the message
+    std::string decryptedData(this->data.length() - crypto_secretbox_NONCEBYTES - crypto_secretbox_MACBYTES, 0);
+    if (crypto_secretbox_open_easy(
+            reinterpret_cast<unsigned char*>(&decryptedData[0]),
+            reinterpret_cast<const unsigned char*>(this->data.c_str() + crypto_secretbox_NONCEBYTES),
+            this->data.length() - crypto_secretbox_NONCEBYTES,
+            reinterpret_cast<const unsigned char*>(nonce.c_str()),
+            reinterpret_cast<const unsigned char*>(this->key.c_str())) != 0) {
+        std::cerr << "Decryption failed!" << std::endl;
+        return "";
     }
 
-    unsigned char nonce[crypto_secretbox_NONCEBYTES];
-    std::memcpy(nonce, this->data.c_str(), crypto_secretbox_NONCEBYTES);
-
-    std::string decrypted_message(this->data.length() - crypto_secretbox_NONCEBYTES, 0);
-    if (crypto_secretbox_open_easy(reinterpret_cast<unsigned char*>(&this->data[0]),
-                                   reinterpret_cast<const unsigned char*>(this->data.c_str() + crypto_secretbox_NONCEBYTES),
-                                   this->data.length() - crypto_secretbox_NONCEBYTES,
-                                   nonce,
-                                   reinterpret_cast<const unsigned char*>(this->key.c_str())) != 0) {
-        std::cerr << "Decryption failed" << std::endl;
-    }
-
-    std::cout << "Decrypted the loaded data!" << std::endl;
-    return decrypted_message;
+    return decryptedData;
 }

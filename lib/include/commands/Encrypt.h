@@ -12,7 +12,7 @@ private:
     std::string data;
     std::string key;
 public:
-    Encrypt(std::string& data, std::string& key);
+    Encrypt(std::string data, std::string key);
     std::string encryptData();
 };
 

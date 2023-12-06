@@ -8,36 +8,33 @@
 #include <iostream>
 #include <sodium/core.h>
 
-Encrypt::Encrypt(std::string& data, std::string& key) {
+Encrypt::Encrypt(std::string data, std::string key) {
     this->data = data;
     this->key = key;
 }
 
 std::string Encrypt::encryptData() {
     if (sodium_init() < 0) {
-        std::cerr << "libsodium encryption module failed to initialize" << std::endl;
+        std::cerr << "Error initializing Libsodium" << std::endl;
+        return "";
     }
 
-    if (this->key.length() != crypto_secretbox_KEYBYTES) {
-        std::cerr << "Invalid key length" << std::endl;
-    }
+    // Generate a random nonce
+    std::string nonce(crypto_secretbox_NONCEBYTES, 0);
+    randombytes_buf(reinterpret_cast<unsigned char*>(&nonce[0]), nonce.size());
 
-    unsigned char nonce[crypto_secretbox_NONCEBYTES];
-    randombytes_buf(nonce, sizeof(nonce));
-
-    std::string ciphertext(crypto_secretbox_MACBYTES + this->data.length(), 0);
-    if (crypto_secretbox_easy(reinterpret_cast<unsigned char*>(&ciphertext[0]),
-                              reinterpret_cast<const unsigned char*>(this->data.c_str()),
-                              this->data.length(),
-                              nonce,
-                              reinterpret_cast<const unsigned char*>(this->key.c_str())) != 0) {
+    // Encrypt the message
+    std::string ciphertext(this->data.length() + crypto_secretbox_MACBYTES, 0);
+    if (crypto_secretbox_easy(
+            reinterpret_cast<unsigned char*>(&ciphertext[0]),
+            reinterpret_cast<const unsigned char*>(this->data.c_str()),
+            this->data.length(),
+            reinterpret_cast<const unsigned char*>(nonce.c_str()),
+            reinterpret_cast<const unsigned char*>(this->key.c_str())) != 0) {
         std::cerr << "Encryption failed" << std::endl;
+        return "";
     }
 
     // Combine the nonce and ciphertext
-    std::string encrypted_message(reinterpret_cast<const char*>(nonce), crypto_secretbox_NONCEBYTES);
-    encrypted_message += ciphertext;
-
-    std::cout << "Encrypted the loaded data!" << std::endl;
-    return encrypted_message;
+    return nonce + ciphertext;
 }
