@@ -65,8 +65,17 @@ void Controller::execute(std::string input) {
         Encrypt encrypt(this->data, this->key);
         this->data = encrypt.encryptData();
     } else if (input == "-decrypt") {
-        cout << "Enter your key for decryption:" << endl;
-        cin >> this->key;
+        FileWrapper loadKey;
+        cout << "Enter your key filepath:" << endl;
+        string filepath = "";
+        cin >> filepath;
+        this->key = loadKey.read(filepath);
+        if (this->data.empty()) {
+            std::cerr << "Failed to load data!" << endl;
+        } else {
+            cout << "Data loaded!" << endl;
+        }
+
         Decrypt decrypt(this->data, this->key);
         this->data = decrypt.decryptData();
     }
