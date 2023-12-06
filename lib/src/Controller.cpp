@@ -82,6 +82,12 @@ void Controller::execute(std::string input) {
 
         Decrypt decrypt(this->data, this->key);
         this->data = decrypt.decryptData();
+    } else if (input == "-cryptocompress") {
+        this->compressThenEncrypt();
+    } else if (input == "-decryptodecompress") {
+        this->decryptThenDecompress();
+    } else {
+        cout << "Unknown command!\nsee -help" << endl;
     }
 }
 
@@ -92,4 +98,57 @@ void Controller::genKey() {
     std::string key(crypto_secretbox_KEYBYTES, 0);
     randombytes_buf(reinterpret_cast<unsigned char*>(&key[0]), key.size());
     this->key = key;
+}
+
+/**
+ * Compresses then encrypts the data in this object.
+ */
+void Controller::compressThenEncrypt() {
+    // compression
+    std::string compressed;
+    compressed = brotli::compress(this->data);
+    this->data = compressed;
+    cout << "Compressed the loaded data!" << endl;
+
+    // encryption
+    this->genKey();
+    cout << "Your key is:" << endl;
+    cout << this->key << endl;
+
+    FileWrapper keySave;
+    string filepath = "";
+    cout << "Enter filepath to save key:" << endl;
+    cin >> filepath;
+    keySave.write(filepath, key);
+    cout << "Key saved to " + filepath << endl;
+
+    cout << "Please save this key for later decryption." << endl;
+    Encrypt encrypt(this->data, this->key);
+    this->data = encrypt.encryptData();
+}
+
+/**
+ * Decrypts then decompresses the data in this object.
+ */
+void Controller::decryptThenDecompress() {
+    // decrypt
+    FileWrapper loadKey;
+    cout << "Enter your key filepath:" << endl;
+    string filepath = "";
+    cin >> filepath;
+    this->key = loadKey.read(filepath);
+    if (this->data.empty()) {
+        std::cerr << "Failed to load data!" << endl;
+    } else {
+        cout << "Data loaded!" << endl;
+    }
+
+    Decrypt decrypt(this->data, this->key);
+    this->data = decrypt.decryptData();
+
+    // decompression
+    std::string decompressed;
+    decompressed = brotli::decompress(this->data);
+    this->data = decompressed;
+    cout << "Decompressed the loaded data!" << endl;
 }

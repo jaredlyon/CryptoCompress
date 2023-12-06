@@ -42,5 +42,6 @@ std::string Decrypt::decryptData() {
         return "";
     }
 
+    std::cout << "Decryption successful!" << std::endl;
     return decryptedData;
 }

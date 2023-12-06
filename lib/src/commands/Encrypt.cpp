@@ -42,5 +42,6 @@ std::string Encrypt::encryptData() {
         return "";
     }
 
+    std::cout << "Encryption successful!" << std::endl;
     return nonce + ciphertext;
 }

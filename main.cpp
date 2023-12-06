@@ -1,6 +1,23 @@
 #include "lib/include/Controller.h"
 #include <iostream>
 
+using std::cout, std::cin, std::endl, std::string;
+void help() {
+    cout << "CryptoCompress CLI guide:" << endl;
+    cout << "**Note that each function will request the necessary args**" << endl;
+    cout << "-load : loads data from a file" << endl;
+    cout << "-save : saves data to a file" << endl;
+    cout << "-encryptcompress : encrypts and compresses the loaded data" << endl;
+    cout << "-decryptdecompress : decrypts and uncompresses the loaded data" << endl;
+    cout << "-compress : compresses the loaded data" << endl;
+    cout << "-decompress : decompresses the loaded data" << endl;
+    cout << "-encrypt : encrypts the loaded data" << endl;
+    cout << "-decrypt : decrypts the loaded data" << endl;
+    cout << "-cryptocompress : compresses & encrypts the loaded data" << endl;
+    cout << "-decryptodecompress : decrypts & decompresses the loaded data" << endl;
+    cout << "-quit : quits CryptoCompress" << endl;
+}
+
 /**
  * Runs CryptoCompress.
  */
@@ -26,17 +43,7 @@ int main() {
         cin >> input;
 
         if (input == "-help") {
-            cout << "CryptoCompress CLI guide:" << endl;
-            cout << "**Note that each function will request the necessary args**" << endl;
-            cout << "-load : loads data from a file" << endl;
-            cout << "-save : saves data to a file" << endl;
-            cout << "-encryptcompress : encrypts and compresses the loaded data" << endl;
-            cout << "-decryptdecompress : decrypts and uncompresses the loaded data" << endl;
-            cout << "-compress : compresses the loaded data" << endl;
-            cout << "-decompress : decompresses the loaded data" << endl;
-            cout << "-encrypt : encrypts the loaded data" << endl;
-            cout << "-decrypt : decrypts the loaded data" << endl;
-            cout << "-quit : quits this program" << endl;
+            help();
         } else if (input == "-quit") {
             cout << "                       _              \n"
                     "   () |             | | |            |\n"

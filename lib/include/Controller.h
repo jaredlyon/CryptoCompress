@@ -15,6 +15,8 @@ private:
     std::string data;
     std::string key;
     void genKey();
+    void compressThenEncrypt();
+    void decryptThenDecompress();
 public:
     Controller();
     void execute(std::string input);
