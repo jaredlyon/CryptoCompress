@@ -27,10 +27,8 @@ std::string Decrypt::decryptData() {
         return "";
     }
 
-    // Extract the nonce from the encrypted message
     std::string nonce = this->data.substr(0, crypto_secretbox_NONCEBYTES);
 
-    // Decrypt the message
     std::string decryptedData(this->data.length() - crypto_secretbox_NONCEBYTES - crypto_secretbox_MACBYTES, 0);
     if (crypto_secretbox_open_easy(
             reinterpret_cast<unsigned char*>(&decryptedData[0]),
