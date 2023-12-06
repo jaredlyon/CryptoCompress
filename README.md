@@ -19,4 +19,4 @@ Hi there! My name is Jared Lyon and I'm currently a student at Northeastern Univ
 
 Feel free to reach me at jaredalyon@gmail.com or [connect with me on LinkedIn](https://www.linkedin.com/in/jaredalyon/)!
 
-You can find my resume [here](https://docs.google.com/document/d/1B09KzLU4TOHG47-ZUVnEg0qCEoYnKj4COjAXmedcXQs/edit?usp=sharing).
+You can also find my resume [here](https://docs.google.com/document/d/1B09KzLU4TOHG47-ZUVnEg0qCEoYnKj4COjAXmedcXQs/edit?usp=sharing).
