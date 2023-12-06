@@ -7,8 +7,6 @@ void help() {
     cout << "**Note that each function will request the necessary args**" << endl;
     cout << "-load : loads data from a file" << endl;
     cout << "-save : saves data to a file" << endl;
-    cout << "-encryptcompress : encrypts and compresses the loaded data" << endl;
-    cout << "-decryptdecompress : decrypts and uncompresses the loaded data" << endl;
     cout << "-compress : compresses the loaded data" << endl;
     cout << "-decompress : decompresses the loaded data" << endl;
     cout << "-encrypt : encrypts the loaded data" << endl;
