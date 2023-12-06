@@ -1,6 +1,9 @@
 #include "lib/include/Controller.h"
 #include <iostream>
 
+/**
+ * Prints the help instructions for CLI reference.
+ */
 using std::cout, std::cin, std::endl, std::string;
 void help() {
     cout << "CryptoCompress CLI guide:" << endl;

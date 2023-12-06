@@ -31,9 +31,9 @@ std::string Encrypt::encryptData() {
     std::string nonce(crypto_secretbox_NONCEBYTES, 0);
     randombytes_buf(reinterpret_cast<unsigned char*>(&nonce[0]), nonce.size());
 
-    std::string ciphertext(this->data.length() + crypto_secretbox_MACBYTES, 0);
+    std::string encryptedData(this->data.length() + crypto_secretbox_MACBYTES, 0);
     if (crypto_secretbox_easy(
-            reinterpret_cast<unsigned char*>(&ciphertext[0]),
+            reinterpret_cast<unsigned char*>(&encryptedData[0]),
             reinterpret_cast<const unsigned char*>(this->data.c_str()),
             this->data.length(),
             reinterpret_cast<const unsigned char*>(nonce.c_str()),
@@ -43,5 +43,5 @@ std::string Encrypt::encryptData() {
     }
 
     std::cout << "Encryption successful!" << std::endl;
-    return nonce + ciphertext;
+    return nonce + encryptedData;
 }
