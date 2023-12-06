@@ -66,3 +66,6 @@
 524	667	1701863017642368676	CryptoCompress	fb459cb97ac66377
 6	522	1701863663372783649	CMakeFiles/CryptoCompress.dir/main.cpp.o	3a41150e83ffaba1
 522	662	1701863663511960967	CryptoCompress	fb459cb97ac66377
+4	528	1701865766648771674	CMakeFiles/CryptoCompress.dir/main.cpp.o	3a41150e83ffaba1
+5	530	1701865766650640346	CMakeFiles/CryptoCompress.dir/lib/src/commands/Encrypt.cpp.o	a21b082ed8da7109
+530	684	1701865766803947904	CryptoCompress	fb459cb97ac66377
